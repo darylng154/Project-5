@@ -200,6 +200,7 @@ public final class VirtualWorld
       System.out.println("View X:" + view.getViewport().getCol() + " View Y:" + view.getViewport().getRow());
 
       Background vein = new Background("vein" , imageStore.getImageList("vein"));
+      Background tomb = new Background("tomb", imageStore.getImageList("tomb"));
 
 
       /*
@@ -217,6 +218,9 @@ public final class VirtualWorld
       for(Point element: Point.get3x3(world, pressed))
          //new Background("vein" , imageStore.getImageList("vein")).setBackgroundCell(world, element);
          vein.setBackgroundCell(world, element);
+
+      tomb.setBackgroundCell(world, pressed);
+
 
 
       if(world.getBackgroundCell(pressed).equals(vein))

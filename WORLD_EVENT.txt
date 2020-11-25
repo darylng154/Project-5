@@ -1,0 +1,22 @@
+1. Daryl Ng & Sin Yi Lo
+
+2. To trigger the event, left click on the screen
+
+
+3. The event should create a 3x3 around the click and cause a zombie to spawn from the tombstone
+
+
+
+4. The affected entities should change target if they were targeting something already
+
+
+5. Entity new = new Zombie();
+   Will target and eat them
+
+
+
+6. Visualization: Daryl Ng & Sin Yi Lo
+   Effect: Daryl Ng
+   New Entity: Sin Yi Lo
+
+

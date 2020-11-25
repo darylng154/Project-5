@@ -17,6 +17,17 @@ final class WorldModel {
    private static final int OCTO_LIMIT = 4;
    private static final int OCTO_ACTION_PERIOD = 5;
    private static final int OCTO_ANIMATION_PERIOD = 6;
+   
+   //P5
+   private static final String ZOMBIE_KEY = "zombie";
+   private static final int ZOMBIE_NUM_PROPERTIES = 7;
+   private static final int ZOMBIE_ID = 1;
+   private static final int ZOMBIE_COL = 2;
+   private static final int ZOMBIE_ROW = 3;
+   private static final int ZOMBIE_LIMIT = 4;
+   private static final int ZOMBIE_ACTION_PERIOD = 6;
+   private static final int ZOMBIE_ANIMATION_PERIOD = 7;
+
 
    private static final String OBSTACLE_KEY = "obstacle";
    private static final int OBSTACLE_NUM_PROPERTIES = 4;
@@ -111,7 +122,8 @@ final class WorldModel {
       }
    }
 
-   public boolean processLine(String line, ImageStore imageStore) {
+   //P5
+  public boolean processLine(String line, ImageStore imageStore) {
       String[] properties = line.split("\\s");
 
       if (properties.length > 0) {
@@ -128,6 +140,8 @@ final class WorldModel {
                return parseAtlantis(properties, imageStore);
             case SGRASS_KEY:
                return parseSgrass(properties, imageStore);
+            case ZOMBIE_KEY:
+               return parseZombie(properties, imageStore);
          }
       }
 
@@ -161,6 +175,24 @@ final class WorldModel {
 
       return properties.length == OCTO_NUM_PROPERTIES;
    }
+   
+   //P5
+    public boolean parseZombie(String[] properties, ImageStore imageStore) {
+      if (properties.length == ZOMBIE_NUM_PROPERTIES) {
+         Point pt = new Point(Integer.parseInt(properties[ZOMBIE_COL]),
+                 Integer.parseInt(properties[ZOMBIE_ROW]));
+         Entity entity = new OctoNotFull(properties[ZOMBIE_ID],
+                 pt,
+                 imageStore.getImageList(ZOMBIE_KEY),
+                 Integer.parseInt(properties[ZOMBIE_LIMIT]),
+                 Integer.parseInt(properties[ZOMBIE_ACTION_PERIOD]),
+                 Integer.parseInt(properties[ZOMBIE_ANIMATION_PERIOD]));
+         tryAddEntity(entity);
+      }
+
+      return properties.length == ZOMBIE_NUM_PROPERTIES;
+   }
+
 
 
    public boolean parseObstacle(String[] properties, ImageStore imageStore) {

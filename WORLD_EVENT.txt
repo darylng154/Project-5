@@ -1,20 +1,21 @@
 1. Daryl Ng & Sin Yi Lo
 
-2. To trigger the event, left click on the screen
+2. To trigger the event, the user can left click on the screen. There is not limitiaion for the location to trigger the event. 
+   As long as the user left click within the screen, it will trigger the event.
 
 
-3. The event should create a 3x3 around the click and cause a zombie to spawn from the tombstone
+3. The event should create a 3x3 around the click and cause a zombie to spawn from the tombstone.
 
 
+4. The affected entities will change target if they were targeting something already
+   Crab will change target from Sgrass to Octo
+   Octo will change target from Fish to Sgrass
 
-4. The affected entities should change target if they were targeting something already
-   Crab will change target Sgrass to Octo
-   Octo will change target Fish to Sgrass
 
-
-5. Entity new = new Zombie();
-   Will target Octo and eat them
-
+5. The new entity is Zombie. Zombie acts similar to the not-full octo. 
+   The zombie will target the Octo. When the zombie finds the nearest Octo, they will eat them.
+   
+   (When the entities touch the zombie, its color will be changed)
 
 
 6. Visualization: Daryl Ng & Sin Yi Lo

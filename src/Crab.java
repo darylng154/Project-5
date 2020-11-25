@@ -28,7 +28,6 @@ public class Crab extends PositionEntity {
 
         if (crabTarget.isPresent()) {
             Point tgtPos = crabTarget.get().getPosition();
-
             if (moveTo( world, crabTarget.get(), scheduler )) {
                 ActEntity quake = new Quake( tgtPos,
                         imageStore.getImageList( Quake.KEY ) );
@@ -38,6 +37,21 @@ public class Crab extends PositionEntity {
                 quake.scheduleActions( scheduler, world, imageStore );
             }
         }
+
+        if(world.withinBounds(this.getPosition()))
+            if(world.getBackgroundCell(this.getPosition()).getId() == "water")
+            {
+                crabTarget = world.findNearest(this.getPosition(), Octo.class);
+                //System.out.println("Crab Target:" + crabTarget.get().getClass());
+
+                Crab crab = new Crab( getId(), getPosition(), imageStore.getImageList("crabb"), getActionPeriod(), getAnimationPeriod());
+
+                world.removeEntity(this);
+                scheduler.unscheduleAllEvents(this);
+                world.addEntity( crab );
+                crab.scheduleActions( scheduler, world, imageStore );
+            }
+
         scheduler.scheduleEvent( this,
                 new ActivityAction( this, world, imageStore ),
                 nextPeriod );
@@ -55,6 +69,17 @@ public class Crab extends PositionEntity {
     @Override
     public boolean moveTo(WorldModel world,
                           Entity target, EventScheduler scheduler) {
+
+        /*
+        if(world.getBackgroundCell(this.getPosition()).getId() == "vein")
+        {
+            if(world.findNearest(this.getPosition(), Octo.class).isPresent())
+                target = world.findNearest(this.getPosition(), Octo.class).get();
+            //System.out.println("Crab Target:" + target.getClass());
+        }
+         */
+
+
         if (Point.adjacent( getPosition(), target.getPosition() )) {
             world.removeEntity( target );
             scheduler.unscheduleAllEvents( target );

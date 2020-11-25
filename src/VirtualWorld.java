@@ -3,6 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import processing.core.*;
 
 /*
@@ -198,33 +200,28 @@ public final class VirtualWorld
       {
          Point pressed = mouseToPoint(mouseX, mouseY);
 
-         System.out.println("X:" + pressed.x + " Y:" + pressed.y + " Background:" + this.world.getBackgroundCell(pressed).getCurrentImage());
-         //System.out.println("View X:" + view.getViewport().getCol() + " View Y:" + view.getViewport().getRow());
-
-
-         if(world.isOccupied(pressed))
-         {
-            System.out.println("Entity:" + world.getOccupancyCell(pressed));
-            System.out.print(", ID:" + world.getOccupancyCell(pressed).getId());
-            System.out.print(", Class:" + world.getOccupancyCell(pressed).getClass() + "\n");
-         }
-         else
+         if(!world.isOccupied(pressed) && world.getEntities().stream().filter(e->e.getClass() == Zombie.class).collect(Collectors.toList()).size() < 3)
          {
             Entity entityZ = new Zombie("zombie",pressed, imageStore.getImageList("zombie"), 100,0, 900, 100);
             world.tryAddEntity(entityZ);
             ((Zombie)entityZ).scheduleActions(scheduler, world, imageStore);
          }
-		 
-         ArrayList<Point> eventAOE = (Point.get3x3(world, pressed));
-		 
-            for (Point element : eventAOE)
+
+         ArrayList<ArrayList<Point>> eventAOE = new ArrayList<>();
+         eventAOE.add(Point.get3x3(world, pressed));
+
+         for(ArrayList<Point> arrayList: eventAOE)
+         {
+            for (Point element : arrayList)
             {
-               //new Background("vein" , imageStore.getImageList("vein")).setBackgroundCell(world, element);
-               Background vein = new Background("vein", imageStore.getImageList("vein"));
+               Background vein = new Background("water", imageStore.getImageList("vein"));
+               Background water = new Background("water", imageStore.getImageList("water"));
                Background tomb = new Background("tomb", imageStore.getImageList("tomb"));
-               vein.setBackgroundCell(world, element);
+               if(world.getBackgroundCell(element).getId() != "tomb")
+                  water.setBackgroundCell(world, element);
                tomb.setBackgroundCell(world, pressed);
             }
+         }
 
          redraw();
 

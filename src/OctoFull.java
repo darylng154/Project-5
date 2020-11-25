@@ -25,6 +25,7 @@ public class OctoFull extends Octo {
             ((ActEntity)fullTarget.get()).scheduleActions(scheduler, world, imageStore);
 
             //transform to unfull
+            //System.out.println("TRANSFORM FULL");
             transformFull(world, scheduler, imageStore);
         }
         else

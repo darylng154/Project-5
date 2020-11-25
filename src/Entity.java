@@ -57,13 +57,4 @@ abstract class Entity {
     {
         return images.get(imageIndex);
     }
-
-    /*
-    public void entityTouchEvent()
-    {
-        if(world.getBackgroundCell(pressed).equals(vein))
-    }
-
-     */
-
 }

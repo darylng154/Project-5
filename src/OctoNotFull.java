@@ -19,10 +19,26 @@ public class OctoNotFull extends Octo  {
         Optional<Entity> notFullTarget = world.findNearest(this.getPosition(),
                 Fish.class);
 
+
         if (!notFullTarget.isPresent() ||
                 !moveTo(world, notFullTarget.get(), scheduler) ||
-                !transformNotFull(world, scheduler, imageStore))
+                !transformNotFull(world, scheduler, imageStore) )//|| !ateByZombie(world, imageStore, scheduler))
         {
+
+            if(world.withinBounds(this.getPosition()))
+                if(world.getBackgroundCell(this.getPosition()).getId() == "water")
+                {
+                    notFullTarget = world.findNearest(this.getPosition(), Sgrass.class);
+                    //System.out.println("Crab Target:" + notFullTarget.get().getClass());
+
+                    OctoNotFull octo = new OctoNotFull( getId(), getPosition(), imageStore.getImageList("octor"), getResourceLimit(), getActionPeriod(), getAnimationPeriod());
+
+                    world.removeEntity(this);
+                    scheduler.unscheduleAllEvents(this);
+                    world.addEntity( octo );
+                    octo.scheduleActions( scheduler, world, imageStore );
+                }
+
             scheduler.scheduleEvent(this,
                     new ActivityAction( this,  world, imageStore),
                     this.getActionPeriod());
@@ -36,7 +52,16 @@ public class OctoNotFull extends Octo  {
     public boolean moveTo( WorldModel world,
                                   Entity target, EventScheduler scheduler)
     {
-        if (Point.adjacent(getPosition(), target.getPosition()))
+        /*
+        if(world.getBackgroundCell(this.getPosition()).getId() == "vein")
+        {
+            if(world.findNearest(this.getPosition(), Sgrass.class).isPresent())
+                target = world.findNearest(this.getPosition(), Sgrass.class).get();
+            //System.out.println("Crab Target:" + target.getClass());
+        }
+         */
+
+        if(Point.adjacent(getPosition(), target.getPosition()))
         {
             this.resourceCount += 1;
             world.removeEntity(target);
@@ -83,6 +108,9 @@ public class OctoNotFull extends Octo  {
             scheduler.unscheduleAllEvents( this );
             world.addEntity( octo );
             octo.scheduleActions( scheduler, world, imageStore );
+
+            //System.out.println("TRANSFORM NOT FULL");
+
 
             return true;
         }

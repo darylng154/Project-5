@@ -43,8 +43,8 @@ final class Background
       return images.get(imageIndex);
    }
 
-   public String toString()
+   public String getId()
    {
-      return "ID:" + id;
+      return id;
    }
 }

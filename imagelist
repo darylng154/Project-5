@@ -36,6 +36,7 @@ seaGrass images/Seaweed1.bmp 255 255 255 0
 background_default images/none.bmp
 vein images/vein.bmp 255 255 255 0
 tomb images/tomb.png 255 255 255 0
+water images/water.bmp 255 255 255 0
 zombie1 images/zombieWalk1.png 255 255 255 0
 zombie1 images/zombieWalk2.png 255 255 255 0
 zombie1 images/zombieWalk3.png 255 255 255 0
@@ -49,3 +50,20 @@ zombie1 images/zombieWalk10.png 255 255 255 0
 zombie images/zombie1.png 255 255 255 0
 zombie images/zombie2.png 255 255 255 0
 zombie images/zombie3.png 255 255 255 0
+octor images/sr1.bmp 255 255 255 0
+octor images/sr2.bmp 255 255 255 0
+octor images/sr3.bmp 255 255 255 0
+octor images/sr4.bmp 255 255 255 0
+octor images/sr5.bmp 255 255 255 0
+crabb images/crabb01.bmp 255 255 255 128
+crabb images/crabb02.bmp 255 255 255 128
+crabb images/crabb03.bmp 255 255 255 128
+crabb images/crabb04.bmp 255 255 255 128
+crabb images/crabb05.bmp 255 255 255 128
+crabb images/crabb06.bmp 255 255 255 128
+crabb images/crabb07.bmp 255 255 255 128
+crabb images/crabb08.bmp 255 255 255 128
+crabb images/crabb09.bmp 255 255 255 128
+crabb images/crabb10.bmp 255 255 255 128
+crabb images/crabb11.bmp 255 255 255 128
+crabb images/crabb11.bmp 255 255 255 128

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 import processing.core.*;
@@ -190,48 +191,46 @@ public final class VirtualWorld
       }
    }
 
-
    //P5
    public void mousePressed()
    {
-      Point pressed = mouseToPoint(mouseX, mouseY);
+      if(mousePressed && mouseButton == LEFT)
+      {
+         Point pressed = mouseToPoint(mouseX, mouseY);
 
-      System.out.println("X:" + pressed.x + " Y:" + pressed.y + " Background:" + this.world.getBackgroundCell(pressed).getCurrentImage());
-      System.out.println("View X:" + view.getViewport().getCol() + " View Y:" + view.getViewport().getRow());
-
-      Background vein = new Background("vein" , imageStore.getImageList("vein"));
-      Background tomb = new Background("tomb", imageStore.getImageList("tomb"));
-
-
-      /*
-      System.out.println("--------Images-----------");
-      for(PImage p: world.getBackgroundCell(pressed).getImages())
-         System.out.println(p.equals(vein.getCurrentImage()) + "\n");
-       */
-
-      //checks background id clicked on
-      //System.out.println(world.getBackgroundCell(pressed).toString());
-
-      System.out.println(world.getOccupancyCell(pressed));
+         System.out.println("X:" + pressed.x + " Y:" + pressed.y + " Background:" + this.world.getBackgroundCell(pressed).getCurrentImage());
+         //System.out.println("View X:" + view.getViewport().getCol() + " View Y:" + view.getViewport().getRow());
 
 
-      for(Point element: Point.get3x3(world, pressed))
-         //new Background("vein" , imageStore.getImageList("vein")).setBackgroundCell(world, element);
-         vein.setBackgroundCell(world, element);
+         if(world.isOccupied(pressed))
+         {
+            System.out.println("Entity:" + world.getOccupancyCell(pressed));
+            System.out.print(", ID:" + world.getOccupancyCell(pressed).getId());
+            System.out.print(", Class:" + world.getOccupancyCell(pressed).getClass() + "\n");
+         }
+         else
+         {
+            Entity entityZ = new Zombie("zombie",pressed, imageStore.getImageList("zombie"), 100,0, 900, 100);
+            world.tryAddEntity(entityZ);
+            ((Zombie)entityZ).scheduleActions(scheduler, world, imageStore);
+         }
+		 
+         ArrayList<Point> eventAOE = (Point.get3x3(world, pressed));
+		 
+            for (Point element : eventAOE)
+            {
+               //new Background("vein" , imageStore.getImageList("vein")).setBackgroundCell(world, element);
+               Background vein = new Background("vein", imageStore.getImageList("vein"));
+               Background tomb = new Background("tomb", imageStore.getImageList("tomb"));
+               vein.setBackgroundCell(world, element);
+               tomb.setBackgroundCell(world, pressed);
+            }
 
-      tomb.setBackgroundCell(world, pressed);
+         redraw();
 
-
-
-      if(world.getBackgroundCell(pressed).equals(vein))
-         System.out.println("Change to Zombie");
-
-
-
-      //System.out.println(world.getBackgroundCell(pressed).getCurrentImage().getImage());
-
-      redraw();
+      }
    }
+
 
    private Point mouseToPoint(int x, int y)
    {

@@ -8,6 +8,8 @@
 
 
 4. The affected entities should change target if they were targeting something already
+   Crab will change target Sgrass to Octo
+   Octo will change target Fish to Sgrass
 
 
 5. Entity new = new Zombie();

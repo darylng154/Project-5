@@ -11,12 +11,12 @@
 4. The affected entities will change target if they were targeting something already
    Crab will change target from Sgrass to Octo
    Octo will change target from Fish to Sgrass
-
+   Also, when the Crab or Octo touch the event area, its color will be changed.
+   
 
 5. The new entity is Zombie. Zombie acts similar to the not-full octo. 
    The zombie will target the Octo. When the zombie finds the nearest Octo, they will eat them.
-   
-   (When the Crab or Octo touch the event area, its color will be changed)
+ 
 
 
 6. Visualization: Daryl Ng & Sin Yi Lo

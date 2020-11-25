@@ -13,7 +13,7 @@
 
 
 5. Entity new = new Zombie();
-   Will target and eat them
+   Will target Octo and eat them
 
 
 

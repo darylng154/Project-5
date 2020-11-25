@@ -5,6 +5,7 @@
 
 
 3. The event should create a 3x3 around the click and cause a zombie to spawn from the tombstone.
+   Max number of zombies able to spawn is 3 but can still trigger event area with left click.
 
 
 4. The affected entities will change target if they were targeting something already
@@ -15,7 +16,7 @@
 5. The new entity is Zombie. Zombie acts similar to the not-full octo. 
    The zombie will target the Octo. When the zombie finds the nearest Octo, they will eat them.
    
-   (When the entities touch the zombie, its color will be changed)
+   (When the Crab or Octo touch the event area, its color will be changed)
 
 
 6. Visualization: Daryl Ng & Sin Yi Lo

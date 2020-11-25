@@ -36,3 +36,13 @@ seaGrass images/Seaweed1.bmp 255 255 255 0
 background_default images/none.bmp
 vein images/vein.bmp 255 255 255 0
 tomb images/tomb.png 255 255 255 0
+zombie images/zombieWalk1.png 255 255 255 0
+zombie images/zombieWalk2.png 255 255 255 0
+zombie images/zombieWalk3.png 255 255 255 0
+zombie images/zombieWalk4.png 255 255 255 0
+zombie images/zombieWalk5.png 255 255 255 0
+zombie images/zombieWalk6.png 255 255 255 0
+zombie images/zombieWalk7.png 255 255 255 0
+zombie images/zombieWalk8.png 255 255 255 0
+zombie images/zombieWalk9.png 255 255 255 0
+zombie images/zombieWalk10.png 255 255 255 0
